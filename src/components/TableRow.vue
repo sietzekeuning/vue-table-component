@@ -1,10 +1,10 @@
 <template>
-    <tr @click="$emit('rowClick', row)">
+    <tr @click="clicked">
         <table-cell
-            v-for="column in visibleColumns"
+            v-for="(column, index) in visibleColumns"
+            :key="row.vueTableComponentInternalRowId + '-' + column.index"
             :row="row"
             :column="column"
-            :key="column.id"
         ></table-cell>
     </tr>
 </template>
@@ -23,6 +23,15 @@
             visibleColumns() {
                 return this.columns.filter(column => ! column.hidden);
             },
+
+            
         },
+
+        methods: {
+            clicked(){
+                this.$emit('click', this.row)
+            }
+        }
+
     };
 </script>

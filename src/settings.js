@@ -1,3 +1,5 @@
+import merge from 'lodash/merge';
+
 const settings = {
     tableClass: '',
     theadClass: '',
@@ -10,9 +12,7 @@ const settings = {
 };
 
 export function mergeSettings(newSettings) {
-    for(const setting in newSettings) {
-        settings[setting] = newSettings[setting];
-    }
+    merge(settings, newSettings);
 }
 
 export default settings;

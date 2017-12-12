@@ -1,5 +1,35 @@
 <template>
     <div class="table-component">
+        
+        <div class="pagination-and-filters">
+            
+            <div class="pagination" v-if="pagination" v-cloak>
+
+                <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
+
+                <div class="pagination-info">
+                    <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
+                </div>
+
+                <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
+
+                <div class="pagination-info">
+                    <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
+                </div>
+                
+                <div v-if="this.loading" class="loading">
+                    <slot name="loading">Loading..</slot>
+                </div>
+
+            </div>
+
+            <div v-if="filters.length" class="clear-filters">
+                <a href @click.prevent="clearFilters" class="btn btn-default">
+                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
+                </a>
+            </div>
+        </div>
+
         <div v-if="showFilter && filterableColumnExists" class="table-component__filter">
             <input
                     :class="fullFilterInputClass"
@@ -30,18 +60,23 @@
                     ></table-column-header>
                 </tr>
                 </thead>
+                
+                <!-- <table-filters></table-filters> -->
+                <thead>
+                    <tr>
+                        <slot name="filters"></slot>
+                    </tr>
+                </thead>
+
                 <tbody :class="fullTableBodyClass">
                 <table-row
                         v-for="row in displayedRows"
-                        :key="row.vueTableComponentInternalRowId"
+                        :key="row.data.vueTableComponentInternalRowId"
                         :row="row"
                         :columns="columns"
-						@rowClick="emitRowClick"
+                        @click="rowClick(row)"
                 ></table-row>
                 </tbody>
-                <tfoot>
-                    <slot name="tfoot" :rows="rows"></slot>
-                </tfoot>
             </table>
         </div>
 
@@ -54,28 +89,46 @@
             <slot></slot>
         </div>
 
-        <pagination v-if="pagination" :pagination="pagination" @pageChange="pageChange"></pagination>
+        
     </div>
 </template>
 
 <script>
+
+
     import Column from '../classes/Column';
     import expiringStorage from '../expiring-storage';
     import Row from '../classes/Row';
     import TableColumnHeader from './TableColumnHeader';
     import TableRow from './TableRow';
     import settings from '../settings';
+    import isArray from 'lodash/isArray';
+    import pick from 'lodash/pick';
     import Pagination from './Pagination';
-    import { classList, pick } from '../helpers';
+    import { classList } from '../helpers';
+
+    import TableColumnFilter from './TableColumnFilter';
+    
+    import activeToggle from './activeToggle';
 
     export default {
         components: {
             TableColumnHeader,
             TableRow,
             Pagination,
+            TableColumnFilter,
+            
+            activeToggle,
         },
 
         props: {
+            uniqueRowKey: {
+                default: 'id',
+            },
+            dataNumResults: {
+                default: 50,
+            },
+            dataFilters: { default: () => [], type: [Array] },
             data: { default: () => [], type: [Array, Function] },
 
             showFilter: { default: true },
@@ -96,26 +149,33 @@
         },
 
         data: () => ({
+            loading: false,
             columns: [],
             rows: [],
             filter: '',
+            filters: [],
             sort: {
                 fieldName: '',
                 order: '',
             },
+            numResults: 0,
             pagination: null,
+            metadata: {},
 
             localSettings: {},
         }),
 
-        created() {
+        async mounted() {
+
             this.sort.fieldName = this.sortBy;
             this.sort.order = this.sortOrder;
+            this.numResults = this.dataNumResults;
+            // console.log('zet numresults op ' + this.dataNumResults);
+
+            this.setInitialFilters();
 
             this.restoreState();
-        },
 
-        async mounted() {
             const columnComponents = this.$slots.default
                 .filter(column => column.componentInstance)
                 .map(column => column.componentInstance);
@@ -138,6 +198,7 @@
         },
 
         watch: {
+
             filter() {
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
@@ -180,7 +241,7 @@
             },
 
             usesLocalData() {
-                return Array.isArray(this.data);
+                return isArray(this.data);
             },
 
             displayedRows() {
@@ -230,13 +291,21 @@
                     ? `vue-table-component.${this.cacheKey}`
                     : `vue-table-component.${window.location.host}${window.location.pathname}${this.cacheKey}`;
             },
+
         },
 
         methods: {
-            async pageChange(page) {
-                this.pagination.currentPage = page;
 
+            async pageChange(page) {
+                
+                if (this.pagination) {
+                    this.$set(this.pagination, 'currentPage', page);
+                }
                 await this.mapDataToRows();
+            },
+
+            rowClick(row){
+                this.$emit('row-click', row)
             },
 
             async mapDataToRows() {
@@ -244,11 +313,11 @@
                     ? this.prepareLocalData()
                     : await this.fetchServerData();
 
-                let rowId = 0;
+                const rowId = 0;
 
                 this.rows = data
                     .map(rowData => {
-                        rowData.vueTableComponentInternalRowId = rowId++;
+                        rowData.vueTableComponentInternalRowId = rowData[this.uniqueRowKey];
                         return rowData;
                     })
                     .map(rowData => new Row(rowData, this.columns));
@@ -261,16 +330,22 @@
             },
 
             async fetchServerData() {
+
+                this.loading = true;
                 const page = this.pagination && this.pagination.currentPage || 1;
 
                 const response = await this.data({
                     filter: this.filter,
+                    filters: this.filters,
                     sort: this.sort,
+                    numResults: this.numResults,
                     page: page,
                 });
 
+                this.metadata = response.metadata;
                 this.pagination = response.pagination;
 
+                this.loading = false;
                 return response.data;
             },
 
@@ -279,13 +354,15 @@
             },
 
             changeSorting(column) {
-                if (this.sort.fieldName !== column.show) {
-                    this.sort.fieldName = column.show;
+                const currentlySortedBy = column.sortBy || column.show;
+
+                if (this.sort.fieldName !== currentlySortedBy) {
+                    this.sort.fieldName = currentlySortedBy;
                     this.sort.order = 'asc';
                 } else {
                     this.sort.order = (this.sort.order === 'asc' ? 'desc' : 'asc');
                 }
-
+                
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
                 }
@@ -298,7 +375,7 @@
             },
 
             saveState() {
-                expiringStorage.set(this.storageKey, pick(this.$data, ['filter', 'sort']), this.cacheLifetime);
+                expiringStorage.set(this.storageKey, pick(this.$data, ['filter', 'filters', 'sort']), this.cacheLifetime);
             },
 
             restoreState() {
@@ -310,13 +387,94 @@
 
                 this.sort = previousState.sort;
                 this.filter = previousState.filter;
+                this.applyFilters(previousState.filters);
 
                 this.saveState();
             },
 
-			emitRowClick(row) {
-				this.$emit('rowClick', row);
-			}
+            applyFilters(filters) {
+                filters.map(prevFilter => {
+                    this.filters.push({ column: prevFilter.column, value: prevFilter.value });
+                    this.$slots.filters.map(filter => {
+                        if (filter.componentInstance !== undefined && filter.componentInstance.column == prevFilter.column) {
+                            filter.componentInstance.value = prevFilter.value;
+                        }
+                    });
+                });
+            },
+
+            setFilter(column, value) {
+                
+                const index = this.filters.find(item => item['column'] == column);          
+
+                if (value === '') {
+                    this.filters.splice(this.filters.indexOf(index), 1);
+                } else {
+                    if (index == undefined) {
+                        this.filters.push({ column: column, value: value });
+                    } else {
+                        this.filters[this.filters.indexOf(index)].value = value;
+                    }
+                }
+
+                if (!this.usesLocalData) {
+                    this.mapDataToRows();
+                }
+
+                this.saveState();
+            },
+
+            clearFilters() {
+
+                this.$slots.filters.map(filter => {
+                    if (filter.tag !== undefined) {
+                        const itemToRemove = this.filters.find(item => item['column'] == filter.componentInstance.column);
+                        this.filters.splice(this.filters.indexOf(itemToRemove), 1);
+
+                        filter.componentInstance.reset();
+                    }
+                });
+
+                this.pageChange(1);
+                
+                if (!this.usesLocalData) {
+                    this.mapDataToRows();
+                }
+
+                this.saveState();
+            },
+
+            setNumResults() {
+                if (!this.usesLocalData) {
+                    this.pageChange(1);
+                    
+                    if (!this.usesLocalData) {
+                        this.mapDataToRows();
+                    }
+                }
+            },
+
+            setInitialFilters() {
+                if (this.dataFilters == [])
+                    return;
+
+                this.applyFilters(this.dataFilters);
+            },
+
+            removeRow(id) {
+                const itemToRemove = this.rows.find(item => item.data.id == id);
+                if (itemToRemove !== undefined) {
+                    this.rows.splice(this.rows.indexOf(itemToRemove), 1);
+                    this.metadata.totalRecords--;
+                }
+            },
+
+            formatNumber(number) {
+                return number.toLocaleString('nl-NL', {
+                    minimumFractionDigits : 0,
+                    maximumFractionDigits : 2,
+                });
+            },
         },
     };
 </script>
