@@ -45,12 +45,12 @@
                 },
             },
             hidden: { default: false, type: Boolean },
-
+            initValue: ''
         },
 
         data() {
             return {
-                value         : '',
+                value : this.initValue,
             };
         },
 

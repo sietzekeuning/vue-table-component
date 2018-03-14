@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --config docs/webpack.config.js",
     "demo": "NODE_ENV=production webpack --config docs/webpack.config.js",
+    "watch": "NODE_ENV=production webpack --watch --progress --hide-modules --config=docs/webpack.config.js",
     "build": "rm -rf dist && NODE_ENV=production webpack",
     "lint": "eslint src __tests__ --ext .js,.vue --fix; exit 0",
     "prepublish": "npm run test; npm run build",
