@@ -30332,6 +30332,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             setInitialFilters: function setInitialFilters() {
                 if (this.dataFilters == []) return;
+                if (this.filters.length > 0) return;
 
                 this.applyFilters(this.dataFilters);
             },

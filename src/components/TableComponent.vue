@@ -455,8 +455,8 @@
             },
 
             setInitialFilters() {
-                if (this.dataFilters == [])
-                    return;
+                if (this.dataFilters == []) return;
+                if (this.filters.length > 0) return;
 
                 this.applyFilters(this.dataFilters);
             },
