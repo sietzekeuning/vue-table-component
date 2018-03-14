@@ -172,9 +172,9 @@
             this.numResults = this.dataNumResults;
             // console.log('zet numresults op ' + this.dataNumResults);
 
-            this.setInitialFilters();
-
             this.restoreState();
+
+            this.setInitialFilters();
 
             const columnComponents = this.$slots.default
                 .filter(column => column.componentInstance)

@@ -29941,9 +29941,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                                 this.numResults = this.dataNumResults;
                                 // console.log('zet numresults op ' + this.dataNumResults);
 
-                                this.setInitialFilters();
-
                                 this.restoreState();
+
+                                this.setInitialFilters();
 
                                 columnComponents = this.$slots.default.filter(function (column) {
                                     return column.componentInstance;
