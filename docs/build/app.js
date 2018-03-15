@@ -30072,6 +30072,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             storageKey: function storageKey() {
                 return this.cacheKey ? 'vue-table-component.' + this.cacheKey : 'vue-table-component.' + window.location.host + window.location.pathname + this.cacheKey;
+            },
+            showClearFilter: function showClearFilter() {
+                return this.filters.length - this.dataFilters.length > 0;
             }
         },
 
@@ -36573,7 +36576,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "table-component"
-  }, [(_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
+  }, [_c('div', {
+    staticClass: "pagination-and-filters-header"
+  }, [(_vm.showClearFilter) ? _c('div', {
+    staticClass: "clear-filters"
+  }, [_c('a', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "href": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.clearFilters($event)
+      }
+    }
+  }, [_vm._t("clear-filter-link", [_vm._v("Clear filter" + _vm._s(this.filters.length == 1 ? '' : 's') + " (" + _vm._s(this.filters.length) + ")")])], 2)]) : _vm._e()]), _vm._v(" "), (_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
     staticClass: "table-component__filter"
   }, [_c('input', {
     directives: [{
@@ -36686,20 +36704,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "text"
   }, [_vm._v("van " + _vm._s(_vm.formatNumber(_vm.metadata.totalRecords)) + " in totaal")])]), _vm._v(" "), (this.loading) ? _c('div', {
     staticClass: "loading"
-  }, [_vm._t("loading", [_vm._v("Loading..")])], 2) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (_vm.filters.length) ? _c('div', {
-    staticClass: "clear-filters"
-  }, [_c('a', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "href": ""
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.clearFilters($event)
-      }
-    }
-  }, [_vm._t("clear-filter-link", [_vm._v("Clear filter" + _vm._s(this.filters.length == 1 ? '' : 's') + " (" + _vm._s(this.filters.length) + ")")])], 2)]) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._t("loading", [_vm._v("Loading..")])], 2) : _vm._e()], 1) : _vm._e()]), _vm._v(" "), _c('div', {
     staticStyle: {
       "display": "none"
     }

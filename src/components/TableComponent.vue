@@ -1,6 +1,14 @@
 <template>
     <div class="table-component">
 
+        <div class="pagination-and-filters-header">
+            <div v-if="showClearFilter" class="clear-filters">
+                <a href @click.prevent="clearFilters" class="btn btn-default">
+                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
+                </a>
+            </div>
+        </div>
+
         <div v-if="showFilter && filterableColumnExists" class="table-component__filter">
             <input
                     :class="fullFilterInputClass"
@@ -77,11 +85,6 @@
 
             </div>
 
-            <div v-if="filters.length" class="clear-filters">
-                <a href @click.prevent="clearFilters" class="btn btn-default">
-                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
-                </a>
-            </div>
         </div>
 
         <div style="display:none;">
@@ -290,6 +293,10 @@
                     ? `vue-table-component.${this.cacheKey}`
                     : `vue-table-component.${window.location.host}${window.location.pathname}${this.cacheKey}`;
             },
+
+            showClearFilter(){
+                return (this.filters.length - this.dataFilters.length) > 0
+            }
 
         },
 
