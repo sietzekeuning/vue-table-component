@@ -1,34 +1,5 @@
 <template>
     <div class="table-component">
-        
-        <div class="pagination-and-filters">
-            
-            <div class="pagination" v-if="pagination" v-cloak>
-
-                <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
-
-                <div class="pagination-info">
-                    <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
-                </div>
-
-                <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
-
-                <div class="pagination-info">
-                    <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
-                </div>
-                
-                <div v-if="this.loading" class="loading">
-                    <slot name="loading">Loading..</slot>
-                </div>
-
-            </div>
-
-            <div v-if="filters.length" class="clear-filters">
-                <a href @click.prevent="clearFilters" class="btn btn-default">
-                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
-                </a>
-            </div>
-        </div>
 
         <div v-if="showFilter && filterableColumnExists" class="table-component__filter">
             <input
@@ -84,6 +55,34 @@
             {{ filterNoResults }}
         </div>
 
+        <div class="pagination-and-filters">
+            
+            <div class="pagination" v-if="pagination" v-cloak>
+
+                <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
+
+                <div class="pagination-info">
+                    <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
+                </div>
+
+                <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
+
+                <div class="pagination-info">
+                    <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
+                </div>
+                
+                <div v-if="this.loading" class="loading">
+                    <slot name="loading">Loading..</slot>
+                </div>
+
+            </div>
+
+            <div v-if="filters.length" class="clear-filters">
+                <a href @click.prevent="clearFilters" class="btn btn-default">
+                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
+                </a>
+            </div>
+        </div>
 
         <div style="display:none;">
             <slot></slot>
@@ -126,7 +125,7 @@
                 default: 'id',
             },
             dataNumResults: {
-                default: 50,
+                default: 25,
             },
             dataFilters: { default: () => [], type: [Array] },
             data: { default: () => [], type: [Array, Function] },

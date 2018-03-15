@@ -29881,7 +29881,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 default: 'id'
             },
             dataNumResults: {
-                default: 50
+                default: 25
             },
             dataFilters: { default: function _default() {
                     return [];
@@ -36573,63 +36573,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "table-component"
-  }, [_c('div', {
-    staticClass: "pagination-and-filters"
-  }, [(_vm.pagination) ? _c('div', {
-    staticClass: "pagination"
-  }, [_c('pagination', {
-    attrs: {
-      "pagination": _vm.pagination,
-      "type": "next-prev"
-    },
-    on: {
-      "pageChange": _vm.pageChange
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "pagination-info"
-  }, [_c('div', {
-    staticClass: "text"
-  }, [_vm._v("Pagina " + _vm._s(_vm.formatNumber(_vm.pagination.currentPage)) + " van " + _vm._s(_vm.formatNumber(_vm.pagination.totalPages)))])]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.numResults),
-      expression: "numResults"
-    }],
-    staticClass: "form-control short num-results",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.numResults)
-    },
-    on: {
-      "change": _vm.setNumResults,
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.numResults = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "pagination-info"
-  }, [_c('div', {
-    staticClass: "text"
-  }, [_vm._v("van " + _vm._s(_vm.formatNumber(_vm.metadata.totalRecords)) + " in totaal")])]), _vm._v(" "), (this.loading) ? _c('div', {
-    staticClass: "loading"
-  }, [_vm._t("loading", [_vm._v("Loading..")])], 2) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (_vm.filters.length) ? _c('div', {
-    staticClass: "clear-filters"
-  }, [_c('a', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "href": ""
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.clearFilters($event)
-      }
-    }
-  }, [_vm._t("clear-filter-link", [_vm._v("Clear filter" + _vm._s(this.filters.length == 1 ? '' : 's') + " (" + _vm._s(this.filters.length) + ")")])], 2)]) : _vm._e()]), _vm._v(" "), (_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
+  }, [(_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
     staticClass: "table-component__filter"
   }, [_c('input', {
     directives: [{
@@ -36700,6 +36644,62 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }))])]), _vm._v(" "), (_vm.displayedRows.length === 0) ? _c('div', {
     staticClass: "table-component__message"
   }, [_vm._v("\n        " + _vm._s(_vm.filterNoResults) + "\n    ")]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "pagination-and-filters"
+  }, [(_vm.pagination) ? _c('div', {
+    staticClass: "pagination"
+  }, [_c('pagination', {
+    attrs: {
+      "pagination": _vm.pagination,
+      "type": "next-prev"
+    },
+    on: {
+      "pageChange": _vm.pageChange
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pagination-info"
+  }, [_c('div', {
+    staticClass: "text"
+  }, [_vm._v("Pagina " + _vm._s(_vm.formatNumber(_vm.pagination.currentPage)) + " van " + _vm._s(_vm.formatNumber(_vm.pagination.totalPages)))])]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.numResults),
+      expression: "numResults"
+    }],
+    staticClass: "form-control short num-results",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.numResults)
+    },
+    on: {
+      "change": _vm.setNumResults,
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.numResults = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pagination-info"
+  }, [_c('div', {
+    staticClass: "text"
+  }, [_vm._v("van " + _vm._s(_vm.formatNumber(_vm.metadata.totalRecords)) + " in totaal")])]), _vm._v(" "), (this.loading) ? _c('div', {
+    staticClass: "loading"
+  }, [_vm._t("loading", [_vm._v("Loading..")])], 2) : _vm._e()], 1) : _vm._e(), _vm._v(" "), (_vm.filters.length) ? _c('div', {
+    staticClass: "clear-filters"
+  }, [_c('a', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "href": ""
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.clearFilters($event)
+      }
+    }
+  }, [_vm._t("clear-filter-link", [_vm._v("Clear filter" + _vm._s(this.filters.length == 1 ? '' : 's') + " (" + _vm._s(this.filters.length) + ")")])], 2)]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticStyle: {
       "display": "none"
     }
