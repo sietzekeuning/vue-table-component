@@ -381,7 +381,7 @@
             },
 
             saveState() {
-                expiringStorage.set(this.storageKey, pick(this.$data, ['filter', 'filters', 'sort']), this.cacheLifetime);
+                expiringStorage.set(this.storageKey, pick(this.$data, ['filter', 'filters', 'sort', 'pagination']), this.cacheLifetime);
             },
 
             restoreState() {
@@ -394,6 +394,8 @@
                 this.sort = previousState.sort;
                 this.filter = previousState.filter;
                 this.applyFilters(previousState.filters);
+
+                this.pagination = previousState.pagination
 
                 this.saveState();
             },

@@ -30253,7 +30253,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 });
             },
             saveState: function saveState() {
-                _expiringStorage2.default.set(this.storageKey, (0, _pick2.default)(this.$data, ['filter', 'filters', 'sort']), this.cacheLifetime);
+                _expiringStorage2.default.set(this.storageKey, (0, _pick2.default)(this.$data, ['filter', 'filters', 'sort', 'pagination']), this.cacheLifetime);
             },
             restoreState: function restoreState() {
                 var previousState = _expiringStorage2.default.get(this.storageKey);
@@ -30265,6 +30265,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 this.sort = previousState.sort;
                 this.filter = previousState.filter;
                 this.applyFilters(previousState.filters);
+
+                this.pagination = previousState.pagination;
 
                 this.saveState();
             },
