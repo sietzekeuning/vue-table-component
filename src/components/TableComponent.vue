@@ -399,7 +399,10 @@
                 this.filter = previousState.filter;
                 this.applyFilters(previousState.filters);
 
-                if(!this.pagination) this.pagination = {currentPage: 1, totalPages: 1}
+                if(!this.pagination) {
+                    this.pagination = {currentPage: 1, totalPages: 1}
+                    this.metadata = {totalRecords: 1}
+                }
                 this.$set(this.pagination, 'currentPage', previousState.currentPage)
 
                 this.saveState();
