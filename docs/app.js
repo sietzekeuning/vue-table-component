@@ -1,5 +1,9 @@
 import Vue from 'vue';
-import { TableColumn, TableComponent, TableColumnFilter } from '../src';
+import TableColumnFilter from '../src/components/TableColumnFilter';
+import TableComponent from '../src/components/TableComponent';
+import TableColumn from '../src/components/TableColumn';
+
+import DemoPage from './demo-page.vue'
 
 new Vue({
     el: '#app',
@@ -7,6 +11,7 @@ new Vue({
     components: {
         TableColumn,
         TableComponent,
-        TableColumnFilter
+        TableColumnFilter,
+        DemoPage
     },
 });

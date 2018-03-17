@@ -18444,67 +18444,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(207), __webpack_require__(361), __webpack_require__(359), __webpack_require__(206), __webpack_require__(33), __webpack_require__(208)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports !== "undefined") {
-        factory(exports, require('./components/TableColumnFilter'), require('./components/TableComponent'), require('./components/TableColumn'), require('./components/Pagination'), require('./settings'), require('./components/activeToggle'));
-    } else {
-        var mod = {
-            exports: {}
-        };
-        factory(mod.exports, global.TableColumnFilter, global.TableComponent, global.TableColumn, global.Pagination, global.settings, global.activeToggle);
-        global.index = mod.exports;
-    }
-})(this, function (exports, _TableColumnFilter, _TableComponent, _TableColumn, _Pagination, _settings2, _activeToggle) {
-    'use strict';
-
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-    exports.activeToggle = exports.TableColumnFilter = exports.TableColumn = exports.TableComponent = undefined;
-
-    var _TableColumnFilter2 = _interopRequireDefault(_TableColumnFilter);
-
-    var _TableComponent2 = _interopRequireDefault(_TableComponent);
-
-    var _TableColumn2 = _interopRequireDefault(_TableColumn);
-
-    var _Pagination2 = _interopRequireDefault(_Pagination);
-
-    var _activeToggle2 = _interopRequireDefault(_activeToggle);
-
-    function _interopRequireDefault(obj) {
-        return obj && obj.__esModule ? obj : {
-            default: obj
-        };
-    }
-
-    exports.default = {
-        install: function install(Vue) {
-            Vue.component('table-component', _TableComponent2.default);
-            Vue.component('table-column', _TableColumn2.default);
-            Vue.component('pagination', _Pagination2.default);
-            Vue.component('table-column-filter', _TableColumnFilter2.default);
-            Vue.component('active-toggle', _activeToggle2.default);
-        },
-        settings: function settings(_settings) {
-            (0, _settings2.mergeSettings)(_settings);
-        }
-    };
-    exports.TableComponent = _TableComponent2.default;
-    exports.TableColumn = _TableColumn2.default;
-    exports.TableColumnFilter = _TableColumnFilter2.default;
-    exports.activeToggle = _activeToggle2.default;
-});
-
-/***/ }),
+/* 209 */,
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29464,23 +29404,31 @@ return Vue;
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(210), __webpack_require__(209)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(210), __webpack_require__(207), __webpack_require__(361), __webpack_require__(359), __webpack_require__(370)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
     } else if (typeof exports !== "undefined") {
-        factory(require('vue'), require('../src'));
+        factory(require('vue'), require('../src/components/TableColumnFilter'), require('../src/components/TableComponent'), require('../src/components/TableColumn'), require('./demo-page.vue'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(global.vue, global.src);
+        factory(global.vue, global.TableColumnFilter, global.TableComponent, global.TableColumn, global.demoPage);
         global.app = mod.exports;
     }
-})(this, function (_vue, _src) {
+})(this, function (_vue, _TableColumnFilter, _TableComponent, _TableColumn, _demoPage) {
     'use strict';
 
     var _vue2 = _interopRequireDefault(_vue);
+
+    var _TableColumnFilter2 = _interopRequireDefault(_TableColumnFilter);
+
+    var _TableComponent2 = _interopRequireDefault(_TableComponent);
+
+    var _TableColumn2 = _interopRequireDefault(_TableColumn);
+
+    var _demoPage2 = _interopRequireDefault(_demoPage);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -29492,9 +29440,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         el: '#app',
 
         components: {
-            TableColumn: _src.TableColumn,
-            TableComponent: _src.TableComponent,
-            TableColumnFilter: _src.TableColumnFilter
+            TableColumn: _TableColumn2.default,
+            TableComponent: _TableComponent2.default,
+            TableColumnFilter: _TableColumnFilter2.default,
+            DemoPage: _demoPage2.default
         }
     });
 });
@@ -30272,6 +30221,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 this.filter = previousState.filter;
                 this.applyFilters(previousState.filters);
 
+                if (!this.pagination) this.pagination = { currentPage: 1, totalPages: 1 };
                 this.$set(this.pagination, 'currentPage', previousState.currentPage);
 
                 this.saveState();
@@ -36823,6 +36773,114 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n    " + _vm._s(_vm.label) + "\n")]) : _vm._e()
 },staticRenderFns: []}
+
+/***/ }),
+/* 370 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(7)(
+  /* script */
+  __webpack_require__(371),
+  /* template */
+  null,
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(228), __webpack_require__(227), __webpack_require__(207), __webpack_require__(361), __webpack_require__(359)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports !== "undefined") {
+        factory(exports, require('babel-runtime/regenerator'), require('babel-runtime/helpers/asyncToGenerator'), require('../src/components/TableColumnFilter'), require('../src/components/TableComponent'), require('../src/components/TableColumn'));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(mod.exports, global.regenerator, global.asyncToGenerator, global.TableColumnFilter, global.TableComponent, global.TableColumn);
+        global.demoPage = mod.exports;
+    }
+})(this, function (exports, _regenerator, _asyncToGenerator2, _TableColumnFilter, _TableComponent, _TableColumn) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _regenerator2 = _interopRequireDefault(_regenerator);
+
+    var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+    var _TableColumnFilter2 = _interopRequireDefault(_TableColumnFilter);
+
+    var _TableComponent2 = _interopRequireDefault(_TableComponent);
+
+    var _TableColumn2 = _interopRequireDefault(_TableColumn);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = {
+        components: { TableColumnFilter: _TableColumnFilter2.default, TableComponent: _TableComponent2.default, TableColumn: _TableColumn2.default },
+        created: function created() {
+            console.log('init');
+        },
+
+
+        methods: {
+            fetchData: function () {
+                var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+                    return _regenerator2.default.wrap(function _callee$(_context) {
+                        while (1) {
+                            switch (_context.prev = _context.next) {
+                                case 0:
+                                    return _context.abrupt('return', {
+                                        data: [{ firstName: 'John', lastName: 'Lennon', instrument: 'Guitar', birthday: '04/10/1940', songs: 72 }, { firstName: 'Paul', lastName: 'McCartney', instrument: 'Bass', birthday: '18/06/1942', songs: 70 }, { firstName: 'George', lastName: 'Harrison', instrument: 'Guitar', birthday: '25/02/1943', songs: 22 }, { firstName: 'Ringo', lastName: 'Starr', instrument: 'Drums', birthday: '07/07/1940', songs: 2 }, { firstName: 'John', lastName: 'Lennon', instrument: 'Guitar', birthday: '04/10/1940', songs: 72 }, { firstName: 'Paul', lastName: 'McCartney', instrument: 'Bass', birthday: '18/06/1942', songs: 70 }, { firstName: 'George', lastName: 'Harrison', instrument: 'Guitar', birthday: '25/02/1943', songs: 22 }, { firstName: 'Ringo', lastName: 'Starr', instrument: 'Drums', birthday: '07/07/1940', songs: 2 }, { firstName: 'John', lastName: 'Lennon', instrument: 'Guitar', birthday: '04/10/1940', songs: 72 }, { firstName: 'Paul', lastName: 'McCartney', instrument: 'Bass', birthday: '18/06/1942', songs: 70 }, { firstName: 'George', lastName: 'Harrison', instrument: 'Guitar', birthday: '25/02/1943', songs: 22 }, { firstName: 'Ringo', lastName: 'Starr', instrument: 'Drums', birthday: '07/07/1940', songs: 2 }, { firstName: 'John', lastName: 'Lennon', instrument: 'Guitar', birthday: '04/10/1940', songs: 72 }],
+                                        pagination: {
+                                            currentPage: 1,
+                                            totalPages: 2
+                                        },
+                                        metadata: {
+                                            to: 1,
+                                            from: 25,
+                                            totalRecords: 41,
+                                            recordsPerPage: 25
+                                        }
+                                    });
+
+                                case 1:
+                                case 'end':
+                                    return _context.stop();
+                            }
+                        }
+                    }, _callee, this);
+                }));
+
+                function fetchData() {
+                    return _ref.apply(this, arguments);
+                }
+
+                return fetchData;
+            }()
+        }
+    };
+});
 
 /***/ })
 /******/ ]);
