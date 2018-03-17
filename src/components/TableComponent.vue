@@ -308,6 +308,8 @@
                     this.$set(this.pagination, 'currentPage', page);
                 }
                 await this.mapDataToRows();
+
+                this.saveState()
             },
 
             rowClick(row){

@@ -30093,6 +30093,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                                     return this.mapDataToRows();
 
                                 case 3:
+
+                                    this.saveState();
+
+                                case 4:
                                 case 'end':
                                     return _context2.stop();
                             }
