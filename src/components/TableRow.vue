@@ -1,5 +1,5 @@
 <template>
-    <tr @click="clicked" v-tooltip="{content: tooltip, delay: 0}">
+    <tr @click="clicked" v-tooltip.bottom.start="{content: tooltip, delay: 0}">
         <table-cell
             v-for="(column) in visibleColumns"
             :key="row.vueTableComponentInternalRowId + '-' + column.index"

@@ -39565,12 +39565,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('tr', {
     directives: [{
       name: "tooltip",
-      rawName: "v-tooltip",
+      rawName: "v-tooltip.bottom.start",
       value: ({
         content: _vm.tooltip,
         delay: 0
       }),
-      expression: "{content: tooltip, delay: 0}"
+      expression: "{content: tooltip, delay: 0}",
+      modifiers: {
+        "bottom": true,
+        "start": true
+      }
     }],
     on: {
       "click": _vm.clicked
