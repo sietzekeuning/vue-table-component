@@ -53,6 +53,7 @@
                         :key="row.data.vueTableComponentInternalRowId"
                         :row="row"
                         :columns="columns"
+                        :tooltip-field="tooltipField"
                         @click="rowClick(row)"
                 ></table-row>
                 </tbody>
@@ -135,6 +136,7 @@
 
             showFilter: { default: true },
             showCaption: { default: true },
+            tooltipField: { default: null },
 
             sortBy: { default: '', type: String },
             sortOrder: { default: '', type: String },
