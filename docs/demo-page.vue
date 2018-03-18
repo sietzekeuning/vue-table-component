@@ -38,6 +38,10 @@ export default {
                     recordsPerPage : 25
                 }
             }
+        },
+
+        rowClass(rowData){
+            return ['enabled', rowData.lastName]
         }
     }
 }

@@ -54,6 +54,7 @@
                         :row="row"
                         :columns="columns"
                         :tooltip-field="tooltipField"
+                        :row-class="rowClass"
                         @click="rowClick(row)"
                 ></table-row>
                 </tbody>
@@ -137,6 +138,7 @@
             showFilter: { default: true },
             showCaption: { default: true },
             tooltipField: { default: null },
+            rowClass: { default: () => [], type: Function },
 
             sortBy: { default: '', type: String },
             sortOrder: { default: '', type: String },

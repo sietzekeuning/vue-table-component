@@ -32619,7 +32619,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 }
 
                 return fetchData;
-            }()
+            }(),
+            rowClass: function rowClass(rowData) {
+                return ['enabled', rowData.lastName];
+            }
         }
     };
 });
@@ -33018,6 +33021,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             showFilter: { default: true },
             showCaption: { default: true },
             tooltipField: { default: null },
+            rowClass: { default: function _default() {
+                    return [];
+                }, type: Function },
 
             sortBy: { default: '', type: String },
             sortOrder: { default: '', type: String },
@@ -33531,7 +33537,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
 
     exports.default = {
-        props: ['columns', 'row', 'tooltipField'],
+        props: ['columns', 'row', 'tooltipField', 'rowClass'],
 
         components: {
             TableCell: _TableCell2.default
@@ -39576,6 +39582,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "start": true
       }
     }],
+    class: _vm.rowClass(_vm.row.data),
     on: {
       "click": _vm.clicked
     }
@@ -39757,7 +39764,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "row": row,
         "columns": _vm.columns,
-        "tooltip-field": _vm.tooltipField
+        "tooltip-field": _vm.tooltipField,
+        "row-class": _vm.rowClass
       },
       on: {
         "click": function($event) {

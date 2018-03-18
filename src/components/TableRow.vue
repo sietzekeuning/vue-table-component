@@ -1,5 +1,9 @@
 <template>
-    <tr @click="clicked" v-tooltip.bottom.start="{content: tooltip, delay: 0}">
+    <tr 
+        @click="clicked" 
+        v-tooltip.bottom.start="{content: tooltip, delay: 0}"
+        :class="rowClass(row.data)"
+    >
         <table-cell
             v-for="(column) in visibleColumns"
             :key="row.vueTableComponentInternalRowId + '-' + column.index"
@@ -13,7 +17,7 @@
     import TableCell from './TableCell';
 
     export default {
-        props: ['columns', 'row', 'tooltipField'],
+        props: ['columns', 'row', 'tooltipField', 'rowClass'],
 
         components: {
             TableCell,
@@ -28,7 +32,7 @@
                 if(!this.tooltipField) return 
 
                 return this.row.data[this.tooltipField]
-            }
+            },
         },
 
         methods: {
