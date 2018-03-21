@@ -32846,6 +32846,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             filter: function filter() {
                 this.$parent.setFilter(this.column, this.value);
+            },
+            debounceFilter: function debounceFilter() {
+                var _this = this;
+
+                _.debounce(function (e) {
+                    _this.filter();
+                }, 400);
             }
         }
 
@@ -39902,11 +39909,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.value)
     },
     on: {
-      "change": _vm.filter,
-      "input": function($event) {
+      "input": [function($event) {
         if ($event.target.composing) { return; }
         _vm.value = $event.target.value
-      }
+      }, _vm.debounceFilter]
     }
   }) : _vm._e()]) : _vm._e()
 },staticRenderFns: []}

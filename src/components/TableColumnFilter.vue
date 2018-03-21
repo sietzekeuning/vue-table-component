@@ -20,7 +20,7 @@
 
         <input v-if="type == 'text'" 
             type="text" 
-            @change="filter"
+            @input="debounceFilter"
             v-model="value"
             class="form-control"
             :placeholder="placeholder || ''"
@@ -63,6 +63,12 @@
             filter() {
                 this.$parent.setFilter(this.column, this.value);
             },
+
+            debounceFilter(){
+                _.debounce ((e) => {
+                    this.filter()
+                }, 400)
+            }
         },
 
     };
