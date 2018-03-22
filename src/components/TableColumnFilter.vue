@@ -29,6 +29,7 @@
 </template>
 
 <script>
+    var debounce = require('debounce');
 
     export default {
         props: {
@@ -64,10 +65,10 @@
                 this.$parent.setFilter(this.column, this.value);
             },
 
-            debounceFilter: _.debounce(function(e){
-                console.log(e)
-                this.value = e.target.value
-                this.filter()
+            debounceFilter: debounce(function(e){
+                console.log(e);
+                this.value = e.target.value;
+                this.filter();
             }, 400)
             
         },
