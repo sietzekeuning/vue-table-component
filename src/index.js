@@ -1,3 +1,5 @@
+window._ = require('lodash')
+
 import TableColumnFilter from './components/TableColumnFilter';
 import TableComponent from './components/TableComponent';
 import TableColumn from './components/TableColumn';

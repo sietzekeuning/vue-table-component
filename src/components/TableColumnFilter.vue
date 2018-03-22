@@ -64,13 +64,12 @@
                 this.$parent.setFilter(this.column, this.value);
             },
 
-            debounceFilter(){
-                _.debounce ((e) => {
-                    console.log(e)
-                    this.value = e.target.value
-                    this.filter()
-                }, 400)
-            }
+            debounceFilter: _.debounce(function(e){
+                console.log(e)
+                this.value = e.target.value
+                this.filter()
+            }, 400)
+            
         },
 
     };
