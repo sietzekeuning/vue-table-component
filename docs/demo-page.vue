@@ -10,7 +10,13 @@ export default {
     },
 
     methods: {
+        sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        },
+
         async fetchData(){
+            await this.sleep(2000)
+
             return {
                 data       : [
             { firstName: 'John', lastName: 'Lennon', instrument: 'Guitar', birthday: '04/10/1940', songs: 72 },

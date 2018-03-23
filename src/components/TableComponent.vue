@@ -61,7 +61,11 @@
             </table>
         </div>
 
-        <div v-if="displayedRows.length === 0" class="table-component__message">
+        <div v-if="this.loading" class="loading">
+            <slot name="loading">Loading..</slot>
+        </div>
+
+        <div v-if="!this.loading && displayedRows.length === 0" class="table-component__message">
             {{ filterNoResults }}
         </div>
 
@@ -81,10 +85,6 @@
                     <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
                 </div>
                 
-                <div v-if="this.loading" class="loading">
-                    <slot name="loading">Loading..</slot>
-                </div>
-
             </div>
 
         </div>
