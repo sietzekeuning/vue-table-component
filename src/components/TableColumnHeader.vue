@@ -1,7 +1,7 @@
 <template>
     <th
         @click="clicked"
-        :class="[headerClass, column]"
+        :class="[headerClass, column.name]"
         role="columnheader"
         scope="col"
         :aria-sort="ariaSort"

@@ -40006,7 +40006,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (this.isVisible) ? _c('th', {
-    class: [_vm.headerClass, _vm.column],
+    class: [_vm.headerClass, _vm.column.name],
     attrs: {
       "role": "columnheader",
       "scope": "col",
