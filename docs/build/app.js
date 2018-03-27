@@ -33053,7 +33053,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             sortOrder: { default: '', type: String },
 
             cacheKey: { default: null },
-            cacheLifetime: { default: 5 },
+            cacheLifetime: { default: 60 },
 
             tableClass: { default: _settings2.default.tableClass },
             theadClass: { default: _settings2.default.theadClass },
@@ -40006,7 +40006,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (this.isVisible) ? _c('th', {
-    class: [_vm.headerClass, _vm.column.name],
+    class: _vm.headerClass,
     attrs: {
       "role": "columnheader",
       "scope": "col",

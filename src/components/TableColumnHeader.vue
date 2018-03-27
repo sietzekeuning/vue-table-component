@@ -1,7 +1,7 @@
 <template>
     <th
         @click="clicked"
-        :class="[headerClass, column.name]"
+        :class="headerClass"
         role="columnheader"
         scope="col"
         :aria-sort="ariaSort"
@@ -16,7 +16,7 @@
     import { classList } from '../helpers';
 
     export default {
-        props: ['column', 'sort'], 
+        props: ['column', 'sort'],
 
         computed: {
             ariaDisabled() {

@@ -144,7 +144,7 @@
             sortOrder: { default: '', type: String },
 
             cacheKey: { default: null },
-            cacheLifetime: { default: 5 },
+            cacheLifetime: { default: 60 },
 
             tableClass: { default: settings.tableClass },
             theadClass: { default: settings.theadClass },
@@ -161,7 +161,7 @@
             filter: '',
             filters: [],
             sort: {
-                fieldName: '',
+                fieldName: '', 
                 order: '',
             },
             numResults: 0,
