@@ -33937,6 +33937,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 data.class = props.column.cellClass;
             }
 
+            if (props.row.data == null) {
+                props.row.data = '';
+            }
+
             if (props.column.template) {
                 return createElement('td', data, props.column.template(props.row.data));
             }
