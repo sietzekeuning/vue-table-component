@@ -10,7 +10,7 @@ export default {
             data.class = props.column.cellClass;
         }
 
-        if(props.row.data == null) {
+        if(props.row.data == null | props.row.data == 'null') {
             props.row.data = '';
         }
 

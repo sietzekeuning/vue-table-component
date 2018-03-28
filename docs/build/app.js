@@ -33937,7 +33937,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 data.class = props.column.cellClass;
             }
 
-            if (props.row.data == null) {
+            if (props.row.data == null | props.row.data == 'null') {
                 props.row.data = '';
             }
 
