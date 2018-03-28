@@ -9,9 +9,9 @@ export default {
         if (props.column.cellClass) {
             data.class = props.column.cellClass;
         }
-
-        if(props.row.data == null | props.row.data == 'null') {
-            props.row.data = '';
+        
+        if(props.row.data[props.column.show] == null) {
+            props.row.data[props.column.show] = '';
         }
 
         if (props.column.template) {
