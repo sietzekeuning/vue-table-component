@@ -33464,6 +33464,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                     }
                 }
 
+                this.pageChange(1);
+
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
                 }

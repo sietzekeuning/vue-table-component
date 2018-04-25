@@ -437,6 +437,8 @@
                     }
                 }
 
+                this.pageChange(1);
+
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
                 }
