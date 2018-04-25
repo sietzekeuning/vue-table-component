@@ -33517,6 +33517,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 }
             },
             formatNumber: function formatNumber(number) {
+                if (!number) return;
+
                 return number.toLocaleString('nl-NL', {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 2

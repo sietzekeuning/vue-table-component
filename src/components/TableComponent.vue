@@ -490,6 +490,8 @@
             },
 
             formatNumber(number) {
+                if(!number) return
+
                 return number.toLocaleString('nl-NL', {
                     minimumFractionDigits : 0,
                     maximumFractionDigits : 2,
