@@ -39789,7 +39789,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "pagination-and-filters-header"
   }, [(_vm.showClearFilter) ? _c('div', {
-    staticClass: "clear-filters"
+    staticClass: "clear-filters mx-2 my-1"
   }, [_c('a', {
     staticClass: "btn btn-default",
     attrs: {
