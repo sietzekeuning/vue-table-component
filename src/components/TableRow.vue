@@ -1,7 +1,6 @@
 <template>
     <tr 
         @click="clicked" 
-        v-tooltip.bottom.start="{content: tooltip, delay: 0}"
         :class="rowClass(row.data)"
     >
         <table-cell
@@ -14,6 +13,7 @@
 </template>
 
 <script>
+        // v-tooltip.bottom.start="{content: tooltip, delay: 0}"
     import TableCell from './TableCell';
 
     export default {
