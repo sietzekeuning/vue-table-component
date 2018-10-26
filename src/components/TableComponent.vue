@@ -56,6 +56,8 @@
                         :tooltip-field="tooltipField"
                         :row-class="rowClass"
                         @click="rowClick(row)"
+                        @over="rowOver(row)"
+                        @out="rowOut(row)"
                 ></table-row>
                 </tbody>
             </table>
@@ -318,6 +320,12 @@
 
             rowClick(row){
                 this.$emit('row-click', row)
+            },
+            rowOver(row){
+                this.$emit('row-over', row)
+            },
+            rowOut(row){
+                this.$emit('row-out', row)
             },
 
             async mapDataToRows() {

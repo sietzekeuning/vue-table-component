@@ -1,6 +1,8 @@
 <template>
     <tr 
         @click="clicked" 
+        @mouseover="over"
+        @mouseout="out"
         :class="rowClass(row.data)"
     >
         <table-cell
@@ -38,7 +40,13 @@
         methods: {
             clicked(){
                 this.$emit('click', this.row)
-            }
+            },
+            over(){
+                this.$emit('over', this.row)
+            },
+            out(){
+                this.$emit('out', this.row)
+            },
         }
 
     };

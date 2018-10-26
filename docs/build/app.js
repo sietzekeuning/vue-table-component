@@ -30255,6 +30255,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             rowClick: function rowClick(row) {
                 this.$emit('row-click', row);
             },
+            rowOver: function rowOver(row) {
+                this.$emit('row-over', row);
+            },
+            rowOut: function rowOut(row) {
+                this.$emit('row-out', row);
+            },
             mapDataToRows: function () {
                 var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
                     var _this3 = this;
@@ -30573,6 +30579,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         methods: {
             clicked: function clicked() {
                 this.$emit('click', this.row);
+            },
+            over: function over() {
+                this.$emit('over', this.row);
+            },
+            out: function out() {
+                this.$emit('out', this.row);
             }
         }
 
@@ -36655,7 +36667,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('tr', {
     class: _vm.rowClass(_vm.row.data),
     on: {
-      "click": _vm.clicked
+      "click": _vm.clicked,
+      "mouseover": _vm.over,
+      "mouseout": _vm.out
     }
   }, _vm._l((_vm.visibleColumns), function(column) {
     return _c('table-cell', {
@@ -36841,6 +36855,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           _vm.rowClick(row)
+        },
+        "over": function($event) {
+          _vm.rowOver(row)
+        },
+        "out": function($event) {
+          _vm.rowOut(row)
         }
       }
     })
