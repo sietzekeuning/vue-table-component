@@ -1,30 +1,32 @@
 <template>
     <td v-if="!hidden" 
         :style="{ minWidth: minWidth ? minWidth + 'px' : '', maxWidth: maxWidth ? maxWidth + 'px' : '' }">
-        <select v-if="type == 'select'"
-            @change="filter"
-            v-model="value"
-            class="form-control"
-            :placeholder="placeholder || ''"
-        >
-            <option v-for="option in options" :key="option.value" :value="option.value">{{ option.label }}</option>
-        </select>
+        <slot>
+            <select v-if="type == 'select'"
+                @change="filter"
+                v-model="value"
+                class="form-control"
+                :placeholder="placeholder || ''"
+            >
+                <option v-for="option in options" :key="option.value" :value="option.value">{{ option.label }}</option>
+            </select>
 
-        <input v-if="type == 'date'" 
-            type="date" 
-            @change="filter"
-            v-model="value"
-            class="form-control"
-            :placeholder="placeholder || ''"
-        >
+            <input v-if="type == 'date'" 
+                type="date" 
+                @change="filter"
+                v-model="value"
+                class="form-control"
+                :placeholder="placeholder || ''"
+            >
 
-        <input v-if="type == 'text'" 
-            type="text" 
-            @input="debounceFilter"
-            v-model="value"
-            class="form-control"
-            :placeholder="placeholder || ''"
-        >
+            <input v-if="type == 'text'" 
+                type="text" 
+                @input="debounceFilter"
+                v-model="value"
+                class="form-control"
+                :placeholder="placeholder || ''"
+            >
+        </slot>
     </td>
 </template>
 

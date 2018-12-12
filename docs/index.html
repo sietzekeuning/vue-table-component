@@ -138,6 +138,7 @@
                     <a href="https://github.com/spatie/vue-table-component">Vue-table-component</a>
                 </h1>
                 <table-component
+                    ref="tableComponent"
                     :data="fetchData"
                     sort-by="songs"
                     sort-order="asc"
@@ -149,6 +150,11 @@
 
                     <template slot="filters">
                         <table-column-filter column="lastName" init-value="test"></table-column-filter>
+                        <table-column-filter column="songs">
+                            <template name="td">
+                                <button type="button" @click="$refs.tableComponent.clearFilters()">clear</button>
+                            </template>
+                        </table-column-filter>
                     </template>
 
                     <table-column show="firstName" label="First name"></table-column>
