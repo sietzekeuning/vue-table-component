@@ -37073,7 +37073,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "table-component"
-  }, [(_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
+  }, [_c('div', {
+    staticClass: "pagination-and-filters-header"
+  }, [_vm._t("clear-filter-link")], 2), _vm._v(" "), (_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
     staticClass: "table-component__filter"
   }, [_c('input', {
     directives: [{

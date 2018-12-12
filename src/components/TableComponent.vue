@@ -1,6 +1,10 @@
 <template>
     <div class="table-component">
 
+        <div class="pagination-and-filters-header">
+            <slot name="clear-filter-link"></slot>
+        </div>
+
         <div v-if="showFilter && filterableColumnExists" class="table-component__filter">
             <input
                     :class="fullFilterInputClass"
