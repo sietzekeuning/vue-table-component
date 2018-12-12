@@ -503,6 +503,10 @@
                     maximumFractionDigits : 2,
                 });
             },
+
+            getRows(){
+                return this.rows
+            }
         },
     };
 </script>
