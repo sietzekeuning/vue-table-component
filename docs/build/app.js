@@ -37285,7 +37285,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.value = $event.target.value
       }, _vm.debounceFilter]
     }
-  }) : _vm._e()])], 2) : _vm._e()
+  }) : _vm._e(), _vm._v(" "), (_vm.type == 'clear' && _vm.$parent.showClearFilter) ? _c('button', {
+    staticClass: "btn btn-default float-right text-red",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.$parent.clearFilters()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-trash mr-1 opacity-50"
+  }), _vm._v("\n            Verwijder filter\n        ")]) : _vm._e()])], 2) : _vm._e()
 },staticRenderFns: []}
 
 /***/ }),

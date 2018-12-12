@@ -26,6 +26,15 @@
                 class="form-control"
                 :placeholder="placeholder || ''"
             >
+
+            <button v-if="type == 'clear' && $parent.showClearFilter"
+                type="button" 
+                class="btn btn-default float-right text-red" 
+                @click="$parent.clearFilters()"
+            >
+                <i class="fa fa-trash mr-1 opacity-50"></i>
+                Verwijder filter
+            </button>
         </slot>
     </td>
 </template>
