@@ -1,14 +1,6 @@
 <template>
     <div class="table-component">
 
-        <div class="pagination-and-filters-header">
-            <div v-if="showClearFilter" class="clear-filters mx-2 my-1">
-                <a href @click.prevent="clearFilters" class="btn btn-default">
-                    <slot name="clear-filter-link">Clear filter{{ this.filters.length == 1 ? '' : 's' }} ({{ this.filters.length }})</slot>
-                </a>
-            </div>
-        </div>
-
         <div v-if="showFilter && filterableColumnExists" class="table-component__filter">
             <input
                     :class="fullFilterInputClass"

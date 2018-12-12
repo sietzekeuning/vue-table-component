@@ -37073,22 +37073,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "table-component"
-  }, [_c('div', {
-    staticClass: "pagination-and-filters-header"
-  }, [(_vm.showClearFilter) ? _c('div', {
-    staticClass: "clear-filters mx-2 my-1"
-  }, [_c('a', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "href": ""
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.clearFilters($event)
-      }
-    }
-  }, [_vm._t("clear-filter-link", [_vm._v("Clear filter" + _vm._s(this.filters.length == 1 ? '' : 's') + " (" + _vm._s(this.filters.length) + ")")])], 2)]) : _vm._e()]), _vm._v(" "), (_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
+  }, [(_vm.showFilter && _vm.filterableColumnExists) ? _c('div', {
     staticClass: "table-component__filter"
   }, [_c('input', {
     directives: [{
