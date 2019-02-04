@@ -77,7 +77,6 @@
             },
 
             debounceFilter: debounce(function(e){
-                console.log(e);
                 this.value = e.target.value;
                 this.filter();
             }, 400)
