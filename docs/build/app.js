@@ -30138,7 +30138,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
             debounceFilter: debounce(function (e) {
-                console.log(e);
                 this.value = e.target.value;
                 this.filter();
             }, 400)
@@ -30502,7 +30501,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 return this.cacheKey ? 'vue-table-component.' + this.cacheKey : 'vue-table-component.' + window.location.host + window.location.pathname + this.cacheKey;
             },
             showClearFilter: function showClearFilter() {
-                return this.filters.length - this.dataFilters.length > 0;
+                return this.filters.length + this.dataFilters.length > 0;
             }
         },
 
@@ -30745,7 +30744,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 this.pageChange(1);
 
                 if (!this.usesLocalData) {
-                    this.mapDataToRows();
+                    // this.mapDataToRows();
                 }
 
                 this.saveState();
@@ -37298,9 +37297,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$parent.clearFilters()
       }
     }
-  }, [_c('i', {
+  }, [_vm._t("remove-filter", [_c('i', {
     staticClass: "fa fa-trash mr-1 opacity-50"
-  }), _vm._v("\n            Verwijder filter\n        ")]) : _vm._e()])], 2) : _vm._e()
+  }), _vm._v("\n                Verwijder filter\n            ")])], 2) : _vm._e()])], 2) : _vm._e()
 },staticRenderFns: []}
 
 /***/ }),

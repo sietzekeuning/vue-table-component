@@ -297,7 +297,7 @@
             },
 
             showClearFilter(){
-                return (this.filters.length - this.dataFilters.length) > 0
+                return (this.filters.length + this.dataFilters.length) > 0
             }
 
         },
