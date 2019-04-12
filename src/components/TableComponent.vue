@@ -67,25 +67,27 @@
             {{ filterNoResults }}
         </div>
 
-        <div class="pagination-and-filters">
-            
-            <div class="pagination" v-if="pagination" v-cloak>
-
-                <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
-
-                <div class="pagination-info">
-                    <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
-                </div>
-
-                <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
-
-                <div class="pagination-info">
-                    <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
-                </div>
+        <slot name="pagination" :pagination="pagination" :metadata="metadata">
+            <div class="pagination-and-filters">
                 
-            </div>
+                <div class="pagination" v-if="pagination" v-cloak>
 
-        </div>
+                    <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
+
+                    <div class="pagination-info">
+                        <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
+                    </div>
+
+                    <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
+
+                    <div class="pagination-info">
+                        <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </slot>
 
         <div style="display:none;">
             <slot></slot>

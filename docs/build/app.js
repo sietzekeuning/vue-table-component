@@ -37157,7 +37157,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "loading"
   }, [_vm._t("loading", [_vm._v("Loading..")])], 2) : _vm._e(), _vm._v(" "), (!this.loading && _vm.displayedRows.length === 0) ? _c('div', {
     staticClass: "table-component__message"
-  }, [_vm._v("\n        " + _vm._s(_vm.filterNoResults) + "\n    ")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n        " + _vm._s(_vm.filterNoResults) + "\n    ")]) : _vm._e(), _vm._v(" "), _vm._t("pagination", [_c('div', {
     staticClass: "pagination-and-filters"
   }, [(_vm.pagination) ? _c('div', {
     staticClass: "pagination"
@@ -37198,11 +37198,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "pagination-info"
   }, [_c('div', {
     staticClass: "text"
-  }, [_vm._v("van " + _vm._s(_vm.formatNumber(_vm.metadata.totalRecords)) + " in totaal")])])], 1) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._v("van " + _vm._s(_vm.formatNumber(_vm.metadata.totalRecords)) + " in totaal")])])], 1) : _vm._e()])], {
+    pagination: _vm.pagination,
+    metadata: _vm.metadata
+  }), _vm._v(" "), _c('div', {
     staticStyle: {
       "display": "none"
     }
-  }, [_vm._t("default")], 2)])
+  }, [_vm._t("default")], 2)], 2)
 },staticRenderFns: []}
 
 /***/ }),
