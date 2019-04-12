@@ -19,6 +19,14 @@
                 :placeholder="placeholder || ''"
             >
 
+            <input v-if="type == 'checkbox'" 
+                type="checkbox" 
+                @change="filter"
+                v-model="value"
+                class="form-control"
+                :placeholder="placeholder || ''"
+            >
+
             <input v-if="type == 'text'" 
                 type="text" 
                 @input="debounceFilter"

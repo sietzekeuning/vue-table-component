@@ -37266,6 +37266,39 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.value = $event.target.value
       }
     }
+  }) : _vm._e(), _vm._v(" "), (_vm.type == 'checkbox') ? _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.value),
+      expression: "value"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "checkbox",
+      "placeholder": _vm.placeholder || ''
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.value) ? _vm._i(_vm.value, null) > -1 : (_vm.value)
+    },
+    on: {
+      "change": [function($event) {
+        var $$a = _vm.value,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.value = $$a.concat([$$v]))
+          } else {
+            $$i > -1 && (_vm.value = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.value = $$c
+        }
+      }, _vm.filter]
+    }
   }) : _vm._e(), _vm._v(" "), (_vm.type == 'text') ? _c('input', {
     directives: [{
       name: "model",
