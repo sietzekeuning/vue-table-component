@@ -30583,7 +30583,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                                         return new _Row2.default(rowData, _this3.columns);
                                     });
 
-                                case 10:
+                                    this.$emit('change', this.filters);
+
+                                case 11:
                                 case 'end':
                                     return _context3.stop();
                             }

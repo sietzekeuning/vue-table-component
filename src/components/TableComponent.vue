@@ -339,6 +339,8 @@
                         return rowData;
                     })
                     .map(rowData => new Row(rowData, this.columns));
+
+                this.$emit('change', this.filters)
             },
 
             prepareLocalData() {
