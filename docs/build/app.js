@@ -31240,7 +31240,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             data.domProps = {};
             data.domProps.innerHTML = props.column.formatter(props.row.getValue(props.column.show), props.row.data);
             console.log(props);
-            data.style = { display: props.show ? 'none' : '' };
+            data.style = { display: props.column.hidden ? 'none' : '' };
 
             return createElement('td', data);
         }
