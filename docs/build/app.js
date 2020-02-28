@@ -31230,7 +31230,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             }
 
             if (props.row.data[props.column.show] == null) {
-                props.row.data[props.column.show] = '';
+                // props.row.data[props.column.show] = '';
             }
 
             if (props.column.template) {
@@ -31239,6 +31239,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
             data.domProps = {};
             data.domProps.innerHTML = props.column.formatter(props.row.getValue(props.column.show), props.row.data);
+            data.domProps.style = { display: props.show ? '' : 'none' };
 
             return createElement('td', data);
         }
@@ -36977,14 +36978,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, _vm._l((_vm.columns), function(column) {
     return _c('table-cell', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!column.hidden),
-        expression: "!column.hidden"
-      }],
       key: _vm.row.vueTableComponentInternalRowId + '-' + column.index,
       attrs: {
+        "show": !column.hidden,
         "row": _vm.row,
         "column": column
       }

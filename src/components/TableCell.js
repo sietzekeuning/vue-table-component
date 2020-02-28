@@ -11,7 +11,7 @@ export default {
         }
         
         if(props.row.data[props.column.show] == null) {
-            props.row.data[props.column.show] = '';
+            // props.row.data[props.column.show] = '';
         }
 
         if (props.column.template) {
@@ -20,6 +20,7 @@ export default {
 
         data.domProps = {};
         data.domProps.innerHTML = props.column.formatter(props.row.getValue(props.column.show), props.row.data);
+        data.domProps.style = {display: props.show ? '' : 'none'}
 
         return createElement('td', data);
     },

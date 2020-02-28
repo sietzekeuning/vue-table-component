@@ -7,7 +7,7 @@
     >
         <table-cell
             v-for="(column) in columns"
-            v-show="!column.hidden"
+            :show="!column.hidden"
             :key="row.vueTableComponentInternalRowId + '-' + column.index"
             :row="row"
             :column="column"
