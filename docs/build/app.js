@@ -37147,7 +37147,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "row": row,
         "columns": _vm.columns,
         "tooltip-field": _vm.tooltipField,
-        "row-class": _vm.rowClass(row)
+        "row-class": _vm.rowClass
       },
       on: {
         "click": function($event) {

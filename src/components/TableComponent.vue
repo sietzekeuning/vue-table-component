@@ -50,7 +50,7 @@
                         :row="row"
                         :columns="columns"
                         :tooltip-field="tooltipField"
-                        :row-class="rowClass(row)"
+                        :row-class="rowClass"
                         @click="rowClick(row)"
                         @over="rowOver(row)"
                         @out="rowOut(row)"
