@@ -6,7 +6,7 @@
         scope="col"
         :aria-sort="ariaSort"
         :aria-disabled="ariaDisabled"
-        v-if="this.isVisible"
+        v-show="this.isVisible"
     >
         {{ label }}
     </th>
