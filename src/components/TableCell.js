@@ -20,7 +20,6 @@ export default {
 
         data.domProps = {};
         data.domProps.innerHTML = props.column.formatter(props.row.getValue(props.column.show), props.row.data);
-        console.log(props)
         data.style = {display: props.column.hidden ? 'none' : ''}
 
         return createElement('td', data);
