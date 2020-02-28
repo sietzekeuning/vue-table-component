@@ -31230,7 +31230,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             }
 
             if (props.row.data[props.column.show] == null) {
-                // props.row.data[props.column.show] = '';
+                props.row.data[props.column.show] = '';
             }
 
             if (props.column.template) {

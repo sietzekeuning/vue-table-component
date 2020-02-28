@@ -11,7 +11,7 @@ export default {
         }
         
         if(props.row.data[props.column.show] == null) {
-            // props.row.data[props.column.show] = '';
+            props.row.data[props.column.show] = '';
         }
 
         if (props.column.template) {
