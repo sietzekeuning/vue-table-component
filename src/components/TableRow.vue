@@ -6,7 +6,8 @@
         :class="rowClass(row.data)"
     >
         <table-cell
-            v-for="(column) in visibleColumns"
+            v-for="(column) in columns"
+            v-show="!column.hidden"
             :key="row.vueTableComponentInternalRowId + '-' + column.index"
             :row="row"
             :column="column"

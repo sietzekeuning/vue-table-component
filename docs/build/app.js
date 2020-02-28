@@ -36975,8 +36975,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "mouseover": _vm.over,
       "mouseout": _vm.out
     }
-  }, _vm._l((_vm.visibleColumns), function(column) {
+  }, _vm._l((_vm.columns), function(column) {
     return _c('table-cell', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!column.hidden),
+        expression: "!column.hidden"
+      }],
       key: _vm.row.vueTableComponentInternalRowId + '-' + column.index,
       attrs: {
         "row": _vm.row,
@@ -37141,7 +37147,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "row": row,
         "columns": _vm.columns,
         "tooltip-field": _vm.tooltipField,
-        "row-class": _vm.rowClass
+        "row-class": _vm.rowClass(row)
       },
       on: {
         "click": function($event) {
