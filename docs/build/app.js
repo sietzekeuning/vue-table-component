@@ -37345,7 +37345,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (this.isVisible) ? _c('th', {
+  return _c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (this.isVisible),
+      expression: "this.isVisible"
+    }],
     class: _vm.headerClass,
     attrs: {
       "role": "columnheader",
@@ -37356,7 +37362,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.clicked
     }
-  }, [_vm._v("\n    " + _vm._s(_vm.label) + "\n")]) : _vm._e()
+  }, [_vm._v("\n    " + _vm._s(_vm.label) + "\n")])
 },staticRenderFns: []}
 
 /***/ })
