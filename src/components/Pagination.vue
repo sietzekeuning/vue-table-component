@@ -1,6 +1,6 @@
 <template>
     <div class="pagination-container">
-    
+
         <nav v-if="shouldShowPagination && type == 'next-prev'">
             <ul class="pagination next-prev">
                 <li>
@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li>
-                    <input type="text" class="form-control" v-model="currentPage" @change="changePage(currentPage)">
+                    <input type="number" class="form-control" v-model="currentPage" @change="changePage(currentPage)">
                 </li>
                 <li>
                     <a v-if="pagination.currentPage < pagination.totalPages" @click="changePage(pagination.currentPage + 1)">
@@ -49,7 +49,7 @@
             type:{
                 default: 'items',
             },
-            
+
         },
 
         data() {

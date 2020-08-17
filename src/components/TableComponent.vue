@@ -35,7 +35,7 @@
                     ></table-column-header>
                 </tr>
                 </thead>
-                
+
                 <!-- <table-filters></table-filters> -->
                 <thead>
                     <tr>
@@ -69,7 +69,7 @@
 
         <slot name="pagination" :pagination="pagination" :metadata="metadata">
             <div class="pagination-and-filters">
-                
+
                 <div class="pagination" v-if="pagination" v-cloak>
 
                     <pagination  :pagination="pagination" type="next-prev" @pageChange="pageChange"></pagination>
@@ -78,12 +78,12 @@
                         <div class="text">Pagina {{ formatNumber(pagination.currentPage) }} van {{ formatNumber(pagination.totalPages) }}</div>
                     </div>
 
-                    <input type="text" class="form-control short num-results" v-model="numResults" @change="setNumResults">
+                    <input type="number" class="form-control short num-results" v-model="numResults" @change="setNumResults">
 
                     <div class="pagination-info">
                         <div class="text">van {{ formatNumber(metadata.totalRecords) }} in totaal</div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -93,7 +93,7 @@
             <slot></slot>
         </div>
 
-        
+
     </div>
 </template>
 
@@ -112,7 +112,7 @@
     import { classList } from '../helpers';
 
     import TableColumnFilter from './TableColumnFilter';
-    
+
     import activeToggle from './activeToggle';
 
     export default {
@@ -121,7 +121,7 @@
             TableRow,
             Pagination,
             TableColumnFilter,
-            
+
             activeToggle,
         },
 
@@ -161,7 +161,7 @@
             filter: '',
             filters: [],
             sort: {
-                fieldName: '', 
+                fieldName: '',
                 order: '',
             },
             numResults: 0,
@@ -307,7 +307,7 @@
         methods: {
 
             async pageChange(page) {
-                
+
                 if (this.pagination) {
                     this.$set(this.pagination, 'currentPage', page);
                 }
@@ -382,7 +382,7 @@
                 } else {
                     this.sort.order = (this.sort.order === 'asc' ? 'desc' : 'asc');
                 }
-                
+
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
                 }
@@ -432,8 +432,8 @@
             },
 
             setFilter(column, value) {
-                
-                const index = this.filters.find(item => item['column'] == column);          
+
+                const index = this.filters.find(item => item['column'] == column);
 
                 if (value === '') {
                     this.filters.splice(this.filters.indexOf(index), 1);
@@ -466,7 +466,7 @@
                 });
 
                 this.pageChange(1);
-                
+
                 if (!this.usesLocalData) {
                     this.mapDataToRows();
                 }
@@ -477,7 +477,7 @@
             setNumResults() {
                 if (!this.usesLocalData) {
                     this.pageChange(1);
-                    
+
                     if (!this.usesLocalData) {
                         this.mapDataToRows();
                     }

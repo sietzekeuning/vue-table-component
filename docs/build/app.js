@@ -37014,7 +37014,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "text"
+      "type": "number"
     },
     domProps: {
       "value": (_vm.currentPage)
@@ -37186,7 +37186,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control short num-results",
     attrs: {
-      "type": "text"
+      "type": "number"
     },
     domProps: {
       "value": (_vm.numResults)
